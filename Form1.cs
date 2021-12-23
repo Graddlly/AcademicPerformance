@@ -86,8 +86,14 @@ namespace AcademicPerformance
 
         private void button1_Click_2(object sender, EventArgs e)
         {
-            var finfo = new Form2(this);
+            var finfo = new Form2();
             finfo.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            File.WriteAllText("students.txt", string.Empty);
+            MessageBox.Show(@"Все данные успешно стерты!");
         }
     }
 }
