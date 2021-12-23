@@ -6,47 +6,43 @@ namespace AcademicPerformance
 {
     public partial class Form2 : Form
     {
-        Form1 fgrid;
-        public Form2(Form1 fg)
+        public Form2()
         {
             InitializeComponent();
-            fgrid = fg;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TextWriter txt = new StreamWriter("students.txt",true);
+            var variables = new Variables();
+
+            try
+            {
+                variables.Tb3 = Convert.ToInt32(textBox3.Text);
+                variables.Tb4 = Convert.ToInt32(textBox4.Text);
+                variables.Tb5 = Convert.ToInt32(textBox5.Text);
+                variables.Tb6 = Convert.ToInt32(textBox6.Text);
+                variables.Tb7 = Convert.ToInt32(textBox7.Text);
+                variables.Tb8 = Convert.ToInt32(textBox8.Text);
+            }
+            catch
+            {
+                throw new Exception("Ошибка: Добавление данных невозможно!");
+            }
+
+            TextWriter txt = new StreamWriter("students.txt", true);
 
             txt.Write(textBox1.Text + Convert.ToString("/"));
             txt.Write(textBox2.Text + Convert.ToString("/"));
-            txt.Write(textBox3.Text + Convert.ToString("/"));
-            txt.Write(textBox4.Text + Convert.ToString("/"));
-            txt.Write(textBox5.Text + Convert.ToString("/"));
-            txt.Write(textBox6.Text + Convert.ToString("/"));
-            txt.Write(textBox7.Text + Convert.ToString("/"));
-            txt.Write(textBox8.Text);
+            txt.Write(variables.Tb3 + Convert.ToString("/"));
+            txt.Write(variables.Tb4 + Convert.ToString("/"));
+            txt.Write(variables.Tb5 + Convert.ToString("/"));
+            txt.Write(variables.Tb6 + Convert.ToString("/"));
+            txt.Write(variables.Tb7 + Convert.ToString("/"));
+            txt.Write(variables.Tb8);
             txt.Write("\r");
-               
-            txt.Close();
-        }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
+            txt.Close();
+            Close();
         }
     }
 }
