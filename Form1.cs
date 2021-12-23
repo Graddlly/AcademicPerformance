@@ -29,7 +29,7 @@ namespace AcademicPerformance
                     row[j] = values[j].Trim();
                 }
 
-                double sum = 0, average = 0, median = 0;
+                double sum = 0, median;
 
                 var valuesn = t.Split('/');
                 var rown = new double[valuesn.Length];
@@ -40,7 +40,7 @@ namespace AcademicPerformance
                     sum += Convert.ToDouble(valuesn[j]);
                 }
 
-                average = sum / 5;
+                var average = sum / 5;
                 Array.Sort(rown);
                 
                 if (rown.Length % 2 != 0)
@@ -49,7 +49,7 @@ namespace AcademicPerformance
                 }
                 else
                 {
-                    median = (Convert.ToDouble(rown[(rown.Length+3) / 2]) + Convert.ToDouble(rown[(rown.Length+2) / 2])) / 2.0;
+                    median = (Convert.ToDouble(rown[(rown.Length + 3) / 2]) + Convert.ToDouble(rown[(rown.Length + 2) / 2])) / 2.0;
                 }
                 
                 valuesn = t.Split('/');
@@ -62,6 +62,8 @@ namespace AcademicPerformance
                 
                 var ahw = 0.3 * average + 0.7 * Convert.ToDouble(rown1[7]);
                 var mhw = 0.3 * median + 0.7 * Convert.ToDouble(rown1[7]);
+                
+                _table.Rows.Clear();
                 _table.Rows.Add(row[0], row[1], ahw, mhw, row[2], row[3], row[4], row[5], row[6], row[7]);
             }
             
@@ -80,7 +82,7 @@ namespace AcademicPerformance
             _table.Columns.Add("КТ №4", typeof(double));
             _table.Columns.Add("КТ №5", typeof(double));
             _table.Columns.Add("Экзамен", typeof(double));
-
+            
             dataGridView1.DataSource = _table;
         }
 
@@ -94,6 +96,7 @@ namespace AcademicPerformance
         {
             File.WriteAllText("students.txt", string.Empty);
             MessageBox.Show(@"Все данные успешно стерты!");
+            _table.Rows.Clear();
         }
     }
 }
