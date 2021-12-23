@@ -14,7 +14,7 @@ namespace AcademicPerformance
         
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            _table.Rows.Clear();
             var lines = File.ReadAllLines("students.txt");
 
             Array.Sort(lines);
@@ -35,7 +35,7 @@ namespace AcademicPerformance
                 var rown = new double[valuesn.Length];
 
                 for (var j = 2; j < valuesn.Length - 1; j++)
-                {       
+                {
                     rown[j] = Convert.ToDouble(valuesn[j].Trim());
                     sum += Convert.ToDouble(valuesn[j]);
                 }
@@ -44,7 +44,7 @@ namespace AcademicPerformance
                 Array.Sort(rown);
                 
                 if (rown.Length % 2 != 0)
-                { 
+                {
                     median = rown[2];
                 }
                 else
@@ -63,7 +63,6 @@ namespace AcademicPerformance
                 var ahw = 0.3 * average + 0.7 * Convert.ToDouble(rown1[7]);
                 var mhw = 0.3 * median + 0.7 * Convert.ToDouble(rown1[7]);
                 
-                _table.Rows.Clear();
                 _table.Rows.Add(row[0], row[1], ahw, mhw, row[2], row[3], row[4], row[5], row[6], row[7]);
             }
             
